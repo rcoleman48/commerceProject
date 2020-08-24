@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlist</h2>
+    {% for item in listings reversed %}
+    <div>
+    <a href="{% url 'listing' item_id=item.id %}">{{item.name}}</a>
+    <p> {{item.description}} </p>
+    <br>
+     <img src= {{item.picture}}> 
+    </div>
+    {% endfor %}
+    
+{% endblock %}

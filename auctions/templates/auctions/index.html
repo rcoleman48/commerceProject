@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {% for item in listings %}
+    {% if item.endDate > now %}
+    <div>
+    <a href="{% url 'listing' item_id=item.id %}">{{item.name}}</a>
+    <p> {{item.description}} </p>
+    {% for bid in item.productBid.all reversed %}
+    {% if forloop.counter == 1 %}
+    <a> Current highest Bid: ${{bid.price}} </a>
+    {% endif %}
+    {% endfor %}
+    <br>
+     <img src= {{item.picture}}> 
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+{% endblock %}
